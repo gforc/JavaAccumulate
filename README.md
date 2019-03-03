@@ -48,5 +48,12 @@ g、使用任意值来匹配属性及元素
 WebElement ele = driver.findElement(By.xpath("//input[@*='fuck']"));//匹配所有input元素中含有属性的值为fuck的元素
 
 ```  
+
+## Xpath 添加变量
+```
+pageNum -=1;
+browser.findElement(By.xpath("//*[@id=\"page\"]/a["+ pageNum +"]/span[2]")).click();
+```
+
 ## 隐藏空间定位
 待添加
