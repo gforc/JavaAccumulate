@@ -56,4 +56,21 @@ browser.findElement(By.xpath("//*[@id=\"page\"]/a["+ pageNum +"]/span[2]")).clic
 ```
 
 ## 隐藏空间定位
-待添加
+```
+WebDriver browser = new ChromeDriver();
+browser.get(url);
+
+String js = "document.getElementById(\"q1_2\").style.display=\"block\"";
+((JavascriptExecutor) browser).executeScript(js);    
+```
+### 说明：
+1. 当浏览器载入 HTML 文档, 它就会成为 Document 对象。
+  Document 对象是 HTML 文档的根节点。
+  Document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。
+2. document有多种获取网页元素的办法：
+  document.getElementsByClassName()	返回文档中所有指定类名的元素集合，作为 NodeList 对象。
+  document.getElementById()	返回对拥有指定 id 的第一个对象的引用。
+  document.getElementsByName()	返回带有指定名称的对象集合。
+  document.getElementsByTagName()	返回带有指定标签名的对象集合。
+  document.querySelector()	返回文档中匹配指定的CSS选择器的第一元素
+  document.querySelectorAll()	document.querySelectorAll() 是 HTML5中引入的新方法，返回文档中匹配的CSS选择器的所有元素节点列表
