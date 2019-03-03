@@ -35,26 +35,18 @@ driver.switchTo().window(it.get(0)); // 返回至原页面
 
 ```
 
-## Xpath 添加变量
+## Xpath 模糊定位
+  
+f、部分属性值匹配（和CSS选择器类似）
 ```  
-# encoding:utf-8
-from selenium import webdriver
-import time
-driver = webdriver.Firefox()
-driver.get("http://www.baidu.com")
+WebElement ele = driver.findElement(By.xpath("//input[start-with(@id,'fuck')]"));//匹配id以fuck开头的元素，id='fuckyou'
+WebElement ele = driver.findElement(By.xpath("//input[ends-with(@id,'fuck')]"));//匹配id以fuck结尾的元素，id='youfuck'
+WebElement ele = driver.findElement(By.xpath("//input[contains(@id,'fuck')]"));//匹配id中含有fuck的元素，id='youfuckyou'
+```  
+g、使用任意值来匹配属性及元素
+```
+WebElement ele = driver.findElement(By.xpath("//input[@*='fuck']"));//匹配所有input元素中含有属性的值为fuck的元素
 
-# 下面这一段使用的是python中变量的方法，简单吧！
-def enter(var):
-    driver.find_element_by_xpath("//input[@id = '%s']" % var).send_keys("haha")
-enter('kw')
-time.sleep(3)
-
-#下面这一段使用的好像是一种固定格式，在JS中有看到
-def enter1(var1):
-    driver.find_element_by_xpath("//input[@id = '" + var1 + "']").click()
-enter1('su')
-time.sleep(3)
-driver.quit()
 ```  
 ## 隐藏空间定位
 待添加
