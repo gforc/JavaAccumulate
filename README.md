@@ -1,3 +1,9 @@
+# selenium报错，找不到元素
+1. 定位中填写的keyword or path 有错
+2. 没有等待足够时间（添加等待时间，或是加长等待时间）
+3. 元素设置为不可见（需要利用java script修改value见下文）
+
+
 # maximize() and findElements（）
 browser.manage().window().maximize() 和 browser.findElements 同时存在时，必须按照下面的顺序写代码，browser.findElements定位不到任何元素。
 ```  
