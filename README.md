@@ -41,7 +41,7 @@ driver.switchTo().window(it.get(0)); // 返回至原页面
 
 ```
 
-## Xpath 模糊定位
+# Xpath 模糊定位
   
 f、部分属性值匹配（和CSS选择器类似）
 ```  
@@ -55,13 +55,62 @@ WebElement ele = driver.findElement(By.xpath("//input[@*='fuck']"));//匹配所�
 
 ```  
 
-## Xpath 添加变量
+# Xpath 添加变量
 ```
 pageNum -=1;
 browser.findElement(By.xpath("//*[@id=\"page\"]/a["+ pageNum +"]/span[2]")).click();
 ```
 
-## 隐藏空间定位
+# 下拉浏览器滚动条
+
+## 利用键盘事件实现
+```
+WebElement webElement = webDriver.findElement(By.cssSelector("body"));
+                webElement.click(); // 有的时候必须点击一下，下拉才能生效（有的网站是这样，原因未找到）
+#小幅度下拉
+                webElement.sendKeys(Keys.PAGE_DOWN);
+#或者直接下拉到底
+              webElement.sendKeys(Keys.END);
+```
+
+## 利用javaScript实现
+
+```
+#下拉到页面底部
+((JavascriptExecutor) webDriver).executeScript("window.scrollTo(0,document.body.scrollHeight)");
+#上拉到页面顶端
+((JavascriptExecutor) webDriver).executeScript("window.scrollTo(document.body.scrollHeight,0)");
+
+```
+或
+```
+#下拉到页面1000位置
+((JavascriptExecutor) webDriver).executeScript("window.scrollTo(0,1000)");
+#上拉到页面顶端 0,0位置
+((JavascriptExecutor) webDriver).executeScript("window.scrollTo(0,0)");
+```  
+例子
+```
+public class SeleniumTest {
+
+    public static void main(String[] args) throws Exception {
+
+        System.setProperty("webdriver.chrome.driver", "D:/tool/chromedriver.exe");
+        WebDriver webDriver = new ChromeDriver();
+
+        webDriver.get("https://m.weibo.cn/");
+        Thread.sleep(1000);
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println("sleep 1s");
+            Thread.sleep(1000);
+            ((JavascriptExecutor) webDriver).executeScript("window.scrollTo(0,"+(i * 500)+")");
+        }
+    }
+}
+```
+
+# 隐藏控件定位
 ```
 WebDriver browser = new ChromeDriver();
 browser.get(url);
