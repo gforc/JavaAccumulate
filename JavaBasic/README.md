@@ -158,5 +158,30 @@ ArrayList和LinkedList之间的数据传递可通过toArray（）方法。
 2.在元素的添加，删除和定位映射中效率相对hashMap较低。但是在排序方面TreeMap比较实用。  
 3.添加的值中允许有null值，但是在输出的时候会报空指针异常。  
 
+# int, Integer
+## 比较大小
+通过下面的例子，来了解integer比较大小需注意的几点。
+eg.定义Integer对象a和b，比较两者结果为：a不等于b
+```  
+1 Integer a = 1;
+2 Integer b = 1;
+3 if(a==b){
+4   System.out.print("a等于b");  
+5 }else{
+6   System.out.print("a不等于b");  
+7 }
+```  
+因为Integer是对象类型，虽然两者内容相同，但是两者是不同的两个对象，在虚拟机中完全是不相干的2个对象，指向不同的地址，所以这样比较的话，结果必然为false。
+如果需要比较两个Integer类型的内容，需要调用intValue()方法来比较，例子如下：
+eg.比较a,b的大小，结果为：a等于b
+```  
+1 Integer a = 1;
+2 Integer b = 1;
+3 if(a.intValue() == b.intValue()){
+4   Systemt.out.print("a等于b");  
+5 }else{
+6   System.out.print("a不等于b");  
+7 }
+```  
 # note
 1. 两个char 做加减乘除后，结果问int
