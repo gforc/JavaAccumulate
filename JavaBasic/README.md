@@ -117,6 +117,59 @@ public class ListOutput {
 	}
 }
 ```  
+# 相同数据类型之间相互相互赋值
+## 值传递
+通过 “=” 进行值传递。
+int， char，string，都可以直接通过“=” 进行两个相同类型变量的赋值。
+```
+int a = 123;
+int b = a;
+```
+
+## 非值传递
+### array 相互赋值
+```
+方式1
+int[] src={1,3,5,6,7,8};
+int[] dest = new int[6];
+for(int i=0;i<6;i++) dest[i] = src[i];
+
+方式2
+int[] src={1,3,5,6,7,8};
+int[] dest;
+dest=(int[]) src.clone();//使用clone创建
+副本,注意clone要使用强制转换
+
+方式3
+int[] src={1,3,5,6,7,8};
+int[] dest = new int[6];
+System.arraycopy(src, 0, dest, 0, 6);
+
+——————————————————————-
+System提供了一个静态方法arraycopy(),我们可以使用它来实现数组之间的复制.
+其函数原型是：
+public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+
+src:源数组; srcPos:源数组要复制的起始位置;
+dest:目的数组; destPos:目的数组放置的起始位置;
+length:复制的长度.
+```
+### ArrayList 相互赋值
+
+```
+ArrayList<String> A= new ArrayList<String>();
+A.add("1");
+A.add("2");
+ArrayList<String> B;
+方式1：
+ArrayList B　＝ new ArrayList<> (A);
+方式2：
+rrayList B　＝ new ArrayList<String>();
+B.addAll(A);
+方式3：
+for(String s: A)
+ B.add(s);
+```
 
 
 # 相似方法的区别
