@@ -171,6 +171,44 @@ for(String s: A)
  B.add(s);
 ```
 
+### MAP 互相赋值
+
+map对象只能实现浅拷贝
+```
+public static void main(String[] args) {
+    // Map只能实现浅拷贝，paramMap中的内容发生变化，paramMap2中的内容亦同步发生变化
+    Map<String, String> paramMap = new HashMap<String, String>();
+    paramMap.put("name", "Marydon");
+    Map<String, String> paramMap2 = new HashMap<String, String>();
+    // 实现浅拷贝方式一：使用=
+    paramMap2 = paramMap;
+    paramMap.remove("name");
+    System.out.println(paramMap2);//{}
+    // 实现浅拷贝方式二：使用Map.putAll()
+    paramMap2.putAll(paramMap);
+    paramMap.remove("name");
+    System.out.println(paramMap2);//{}
+}
+
+```
+hashmap对象实现深拷贝
+```
+public static void main(String[] args) {
+    // HashMap可以实现真正意义上深拷贝，注意不是Map
+    HashMap<String, String> paramMap = new HashMap<String, String>();
+    paramMap.put("name", "Marydon");
+    HashMap<String, String> paramMap2 = new HashMap<String, String>();
+    // 实现深拷贝：使用HashMap.putAll()
+    paramMap2.putAll(paramMap);
+    paramMap.remove("name");
+    System.out.println(paramMap2);// {name=Marydon}
+}
+```
+总结：
+实现浅拷贝的方式有两种：=和Map.putAll()；
+实现深拷贝：HashMap.putAll()。
+使用Map调用putAll()方法，并不是真正意义上的拷贝，Map对象B只是对Map对象A进行了引用，当Map对象A中的内容发生变化时，Map对象B也会发生变化；
+使用HashMap调用putAll()方法才是真正意义上的拷贝。
 
 # 相似方法的区别
 ## HashSet，ArrayList，LinkedList
