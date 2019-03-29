@@ -274,5 +274,16 @@ eg.比较a,b的大小，结果为：a等于b
 6   System.out.print("a不等于b");  
 7 }
 ```  
+
+# 多线程
+
+## 集合类多线程
+有三种方法(LinkedList是非线程安全的集合类)：
+1、使用线程安全的集合类。（如Vector）它的所有方法都是同步的，几乎不需要自己加同步代码。
+2、对于非线程安全的集合类，可以用synchronized自己做同步处理
+3、对于非线程安全的集合类，可以使用同步包装方法对集合进行包装，包装后的对象（下例的list）是线程安全的。
+   List list = Collections.synchronizedList(new LinkedList(...));
+   
+   
 # note
 1. 两个char 做加减乘除后，结果问int
